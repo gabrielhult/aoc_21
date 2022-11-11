@@ -7,39 +7,58 @@ for line in open('aoc_1_values.txt').readlines():
     print(line)
 
 #part 1    
-"""
-for elem in range(len(values)):
+
+""" for elem in range(len(values)):
     if elem == 0:
-        print("First element, don't check.")
+        #print("First element, don't check.")
         increased += 1
     else:
         if values[elem] > values[elem-1]:
-            print("now ", values[elem], " and before ", values[elem-1])
+            #print("now ", values[elem], " and before ", values[elem-1])
             increased += 1
-print("amount increased: ", increased)
-"""
-
-remaining_elements = len(values)
-first_sum = 0
-second_sum = 0
-third_sum = 0
-current_pair_count = 0  
-new_pair_count = 0 
-
-first_three_counter = 0
+print("Value increased", increased, "times!") """
 
 #part 2
-for line in open('aoc_1_values.txt').readlines():
-    values.append(line)
-    #print(line)
+remaining_elements = len(values)
+first_three = []
+second_three = []
+third_three = []
 
-for elem in range(len(values)):
-    if first_three_counter == 0:
-        first_sum += values[elem]
-        first_three_counter += 1
-    elif first_three_counter == 0:
-        second_sum += values[elem]
-        first_three_counter += 1
-    elif first_three_counter == 2:
-        third_sum += values[elem]
-        first_three_counter += 1
+
+for elem in values:
+    if elem == values[0]:
+        first_three.append(elem);
+    else:
+        if len(first_three) % 3 != 0:
+            first_three.append(elem)
+
+        if len(second_three) % 3 != 0:
+            second_three.append(elem)
+
+        if len(third_three) % 3 != 0:
+            third_three.append(elem)
+
+        print(len(first_three))
+        if len(first_three) % 3 == 0:
+            if first_three[0] + first_three[1] + first_three[2] <  second_three[0] + second_three[1] + second_three[2]:
+                increased += 1
+                print("increased")
+            first_three.clear()
+
+        
+        if len(second_three) % 3 == 0:
+            if second_three[0] + second_three[1] + second_three[2] <  third_three[0] + third_three[1] + third_three[2]:
+                increased += 1
+            second_three.clear()
+
+        if len(third_three) % 3 == 0:
+            if third_three[0] + third_three[1] + third_three[2] <  first_three[0] + first_three[1] + first_three[2]:
+                increased += 1
+            third_three.clear()
+print("Measurements increased", increased, "times!")
+
+
+
+
+
+
