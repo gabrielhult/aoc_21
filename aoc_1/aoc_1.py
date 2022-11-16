@@ -1,6 +1,6 @@
 values = []
 increased = 0
- 
+ #test comment for wsl
 
 for line in open('aoc_1_values.txt').readlines():
     values.append(line)
