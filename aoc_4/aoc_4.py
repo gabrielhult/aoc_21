@@ -19,24 +19,24 @@ def part1(data):
     for elem in data:
         if(elem != ''):
             bingo_rows.append(elem.split(' '))
-        #print(elem)
         for row in bingo_rows:
             for number in row:
                 if(number == ''):
                     row.remove(number)
-    print(len(bingo_rows) // 5)       
     #print("Our Bingo rows:", bingo_rows)
 
     #Combine rows into bricks
     for row in bingo_rows:
         if(row_counter % 5 == 0):
             if(row_counter != 0):
+                print(row_counter)
                 bingo_bricks.append(temp_list)
             temp_list = []
         temp_list.append(row)
         row_counter += 1
-            
-    #print(bingo_bricks)
+        if(row_counter == 500):
+            bingo_bricks.append(temp_list)
+
     #Play Bingo
     for number in bingo_numbers:
         current_brick = 0
@@ -51,11 +51,16 @@ def part1(data):
                 current_row += 1
             current_brick += 1
 
-        #Check if a brick has won (we know it's 20 bricks)
-        for brick in range(0, len(bingo_rows) // 5): #current_brick
-            #print(brick)
-            #if(bingo_rows[first_row].count("x") == 5):
-                #print("BINGO!")
+        #Check if a brick has won
+        for brick in range(0, len(bingo_bricks)): #current_brick
+            #Check if any row is filled
+            for row in range(0, 5):
+                #print(brick, row)
+                #print(bingo_bricks[brick][row])
+                if(bingo_bricks[brick][row].count("x") == 5):
+                    print("BINGO! Save number drawn and brick for result")
+            #Check if any column is filled
+            #WIP
 
     #print(bingo_bricks)
     return
